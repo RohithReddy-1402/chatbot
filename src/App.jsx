@@ -44,6 +44,10 @@ function App() {
     }
     setGeneratingAnswer(false);
   }
+  const buttonClick=(e,text)=>{
+    setQuestion(text);
+    generateAnswer(e);
+  }
 
   return (
     <div className="fixed inset-0 bg-gradient-to-r from-white  to-purple-500">
@@ -73,9 +77,9 @@ function App() {
                   I'm here to help you with anything you'd like to know. You can ask me about:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <span className="text-blue-500">💡</span> General knowledge
-                  </div>
+                  <button type="submit" className="bg-white p-4 rounded-lg shadow-sm" onMouseEnter={()=>setQuestion("Random General Knowledge Facts")} onMouseLeave={()=>setQuestion("")} onClick={(e)=>generateAnswer(e)} >
+                    <span className="text-blue-500 cursor-pointer" >💡</span> General knowledge
+                  </button>
                   <div className="bg-white p-4 rounded-lg shadow-sm">
                     <span className="text-blue-500">🔧</span> Technical questions
                   </div>
@@ -116,7 +120,7 @@ function App() {
         </div>
 
         
-        <form onSubmit={generateAnswer} className="bg-white rounded-lg shadow-lg p-4">
+        <form onSubmit={generateAnswer}  className="bg-white rounded-lg shadow-lg p-4">
           <div className="flex gap-2">
             <textarea
               required
